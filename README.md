@@ -1,7 +1,3 @@
-Here is a **clean, professional v2 README** (concise, structured, no fluff):
-
----
-
 ````markdown
 # RAG Document Chatbot
 
