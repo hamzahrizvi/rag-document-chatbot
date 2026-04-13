@@ -84,16 +84,4 @@ streamlit run app.py
 * Chat history and memory
 * Source citations
 
-```
 
----
-
-### What changed vs v1
-- explicitly mentions **persistence**
-- removes unnecessary explanation
-- focuses on **what improved**
-- more “engineering-style” (better for recruiters)
-
----
-
-```
