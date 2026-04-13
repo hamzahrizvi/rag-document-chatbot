@@ -54,11 +54,11 @@ Context is passed to the local LLM
         v
 Response is generated and shown in the UI
 ```
-##How It Works
+## How It Works
 
 When a user uploads a document, the file is loaded and split into smaller chunks. Each chunk is converted into an embedding and stored in a FAISS vector database. When the user asks a question, the system performs a similarity search to retrieve the most relevant chunks. Those chunks are then passed as context to the local language model, which generates an answer grounded in the uploaded document.
 
-##Tech Stack
+## Tech Stack
 
 Python
 Streamlit
