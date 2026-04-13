@@ -1,48 +1,46 @@
-# RAG Document Chatbot
-
-![Python](https://img.shields.io/badge/Python-3.10+-blue)
-![Streamlit](https://img.shields.io/badge/Streamlit-App-red)
-![LangChain](https://img.shields.io/badge/LangChain-RAG-green)
-![FAISS](https://img.shields.io/badge/FAISS-Vector%20DB-orange)
-![Ollama](https://img.shields.io/badge/Ollama-Local%20LLM-black)
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+# RAG Document Chatbot (v2)
 
 ## Overview
 
-A local Retrieval-Augmented Generation (RAG) chatbot that enables users to upload documents and query their contents. The system retrieves relevant context using vector search and generates grounded responses using a local LLM.
+A local Retrieval-Augmented Generation (RAG) chatbot that allows users to upload documents and query their contents. Version 2 introduces persistent storage, removing the need to re-upload documents each session.
+
+## What’s New (v2)
+
+- Persistent vector database (FAISS saved locally)
+- Documents processed once and reused across sessions
+- Faster startup after initial indexing
+- Improved retrieval consistency
 
 ## Features
 
-- Document ingestion and processing (.txt)
-- Semantic search using FAISS
-- Context-aware response generation
-- Fully local execution (no API dependency)
-- Streamlit-based interface
+- Document ingestion (.txt)
+- Text chunking and embeddings
+- Semantic search with FAISS
+- Context-aware responses using Ollama
+- Local execution (no external APIs)
+- Persistent knowledge base
 
 ## Architecture
 
 ```text
-Upload Document
-      |
-      v
-Text Chunking
-      |
-      v
-Embeddings (Ollama)
-      |
-      v
-Vector Store (FAISS)
-      |
-      v
+Upload Document (once)
+        |
+        v
+Chunk + Embed
+        |
+        v
+Save Vector Store (local)
+        |
+        v
 User Query
-      |
-      v
+        |
+        v
+Load Vector Store
+        |
+        v
 Similarity Search
-      |
-      v
-Context Injection
-      |
-      v
+        |
+        v
 LLM Response
 ````
 
@@ -54,66 +52,48 @@ LLM Response
 * FAISS
 * Ollama
 
-## Project Structure
-
-```
-rag-document-chatbot/
-├── app.py
-├── requirements.txt
-├── README.md
-```
-
-## Installation
+## How to Run
 
 ```bash
-git clone https://github.com/your-username/rag-document-chatbot.git
-cd rag-document-chatbot
-
 conda create -n rag-env python=3.10 -y
 conda activate rag-env
-
 pip install -r requirements.txt
 ```
 
-## Running the Application
-
-Ensure Ollama is installed and running:
+Start model:
 
 ```bash
 ollama run phi
 ```
 
-Start the app:
+Run app:
 
 ```bash
 streamlit run app.py
 ```
 
-## Current Limitations
+## Notes
 
-* Session-based storage (no persistence)
-* Text files only
-* No chat memory
-* No source attribution
+* First run will process and store embeddings locally
+* Subsequent runs reuse stored data (no re-upload needed)
 
-## Roadmap
+## Next Improvements
 
-* Persistent vector database
-* PDF and multi-file support
+* PDF support
+* Multi-file ingestion
 * Chat history and memory
 * Source citations
-* UI improvements
 
-## Learning Outcomes
+```
 
-* RAG pipeline design
-* Vector embeddings and similarity search
-* Local LLM integration
-* End-to-end AI application development
+---
 
-## License
+### What changed vs v1
+- explicitly mentions **persistence**
+- removes unnecessary explanation
+- focuses on **what improved**
+- more “engineering-style” (better for recruiters)
 
-MIT License
+---
 
-
-
+```
