@@ -2,23 +2,23 @@
 
 ## Overview
 
-A local Retrieval-Augmented Generation (RAG) chatbot that allows users to upload documents and query their contents. Version 2 introduces persistent storage, removing the need to re-upload documents each session.
+A local Retrieval-Augmented Generation (RAG) chatbot that allows users to upload documents and query their contents.  
+Version 2 introduces persistent storage, improved retrieval quality, and more reliable response generation.
 
-## What’s New (v2)
+---
 
-- Persistent vector database (FAISS saved locally)
-- Documents processed once and reused across sessions
-- Faster startup after initial indexing
-- Improved retrieval consistency
+## Key Improvements (v2)
 
-## Features
+- Persistent local vector database (FAISS)
+- Documents indexed once and reused across sessions
+- Separation of LLM and embedding models
+- Improved retrieval accuracy using dedicated embedding model
+- Reduced hallucinations through stricter prompt design
+- Context-aware answer generation (not just extraction)
+- Query-type handling (credentials vs procedural questions)
+- Basic performance monitoring (retrieval + LLM timing)
 
-- Document ingestion (.txt)
-- Text chunking and embeddings
-- Semantic search with FAISS
-- Context-aware responses using Ollama
-- Local execution (no external APIs)
-- Persistent knowledge base
+---
 
 ## Architecture
 
@@ -26,62 +26,56 @@ A local Retrieval-Augmented Generation (RAG) chatbot that allows users to upload
 Upload Document (once)
         |
         v
-Chunk + Embed
+Chunking (smaller segments)
         |
         v
-Save Vector Store (local)
+Embeddings (nomic-embed-text)
+        |
+        v
+Vector Store (FAISS - persisted locally)
         |
         v
 User Query
         |
         v
-Load Vector Store
+Similarity Search (top-k chunks)
         |
         v
-Similarity Search
+Context + Query → LLM (mistral-nemo)
         |
         v
-LLM Response
-````
-
+Response Generation
+```
 ## Tech Stack
+- Python
+- Streamlit
+- LangChain
+- FAISS
+- Ollama
 
-* Python
-* Streamlit
-* LangChain
-* FAISS
-* Ollama
-
-## How to Run
-
-```bash
+## Running the Project
 conda create -n rag-env python=3.10 -y
 conda activate rag-env
 pip install -r requirements.txt
-```
 
-Start model:
+## Pull required models:
 
-```bash
-ollama run phi
-```
+ollama pull mistral-nemo
+ollama pull nomic-embed-text
 
-Run app:
-
-```bash
+## Run the app:
 streamlit run app.py
-```
 
 ## Notes
+- Vector store must be rebuilt after changing embedding models
+- Retrieval quality depends on chunking and document structure
+- Local model performance depends on available system resources
 
-* First run will process and store embeddings locally
-* Subsequent runs reuse stored data (no re-upload needed)
+## Next Steps
+- Multi-file ingestion
+- PDF support
+- Source attribution in answers
+- Chat history and memory
+- UI improvements
 
-## Next Improvements
-
-* PDF support
-* Multi-file ingestion
-* Chat history and memory
-* Source citations
-
-
+---
