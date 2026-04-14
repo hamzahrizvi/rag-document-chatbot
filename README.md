@@ -54,18 +54,20 @@ Response Generation
 - Ollama
 
 ## Running the Project
+```bash
 conda create -n rag-env python=3.10 -y
 conda activate rag-env
 pip install -r requirements.txt
-
+```
 ## Pull required models:
-
+```bash
 ollama pull mistral-nemo
 ollama pull nomic-embed-text
-
+```
 ## Run the app:
+```bash
 streamlit run app.py
-
+```
 ## Notes
 - Vector store must be rebuilt after changing embedding models
 - Retrieval quality depends on chunking and document structure
