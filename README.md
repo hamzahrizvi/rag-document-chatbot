@@ -17,6 +17,7 @@ This project demonstrates an end-to-end AI application with persistent storage, 
 
 ---
 
+YOUTUBE DEMO: https://youtu.be/QOyak7Gxftw
 
 ## Key Features
 
