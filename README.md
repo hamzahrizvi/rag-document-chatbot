@@ -16,7 +16,7 @@ A local Retrieval-Augmented Generation (RAG) chatbot that allows users to upload
 This project demonstrates an end-to-end AI application with persistent storage, multi-document support, reranking, and chat memory.
 
 ---
-<img width="400" height="225" alt="clideo_editor_2b37faa2bd074f8d9800d6a8e386da31" src="https://github.com/user-attachments/assets/72ca7395-bd46-40e8-8048-ebd5782bb78f" />
+<img width="1280" height="720" alt="clideo_editor_2b37faa2bd074f8d9800d6a8e386da31" src="https://github.com/user-attachments/assets/72ca7395-bd46-40e8-8048-ebd5782bb78f" />
 
 ## Key Features
 
