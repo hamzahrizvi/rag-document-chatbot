@@ -106,7 +106,10 @@ ollama pull phi
 ollama pull mistral
 ollama pull mistral-nemo
 ollama pull nomic-embed-text
-Run the Application
+```
+## Run the Application
+
+```Bash
 streamlit run app.py
 ```
 ## Notes
