@@ -1,4 +1,4 @@
-# RAG Document Chatbot
+# Local Knowledge Assistant (RAG Chatbot)
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue)
 ![Streamlit](https://img.shields.io/badge/Streamlit-App-red)
@@ -7,67 +7,92 @@
 ![Ollama](https://img.shields.io/badge/Ollama-Local%20LLM-black)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
+---
+
 ## Overview
 
-A local Retrieval-Augmented Generation (RAG) chatbot that enables users to upload documents and query their contents. The system retrieves relevant context using vector search and generates grounded responses using a local LLM.
+A local Retrieval-Augmented Generation (RAG) chatbot that allows users to upload documents and query their contents. The system retrieves relevant context using vector search and generates grounded answers using local LLMs.
 
-## Features
+This project demonstrates an end-to-end AI application with persistent storage, multi-document support, reranking, and chat memory.
 
-- Document ingestion and processing (.txt)
-- Semantic search using FAISS
-- Context-aware response generation
-- Fully local execution (no API dependency)
-- Streamlit-based interface
+---
+
+## Key Features
+
+### Multi-Document Support
+- Upload multiple files in one session
+- Supports `.txt`, `.pdf`, and `.docx`
+
+### Persistent Knowledge Base
+- Documents are embedded and stored locally (FAISS)
+- No need to re-upload after restarting the app
+
+### Model Selection
+- Switch between models at runtime:
+  - `phi` (fast)
+  - `mistral` (balanced)
+  - `mistral-nemo` (accurate)
+
+### Improved Retrieval
+- Dedicated embedding model: `nomic-embed-text`
+- Reranking using cross-encoder for better relevance
+- Reduced hallucinations
+
+### Chat Memory
+- Maintains recent conversation context
+- Enables follow-up questions
+
+### Source Attribution
+- Displays source documents for each answer
+- Improves transparency and trust
+
+---
 
 ## Architecture
 
 ```text
-Upload Document
-      |
-      v
-Text Chunking
-      |
-      v
-Embeddings (Ollama)
-      |
-      v
-Vector Store (FAISS)
-      |
-      v
+Document Upload (multi-file)
+        |
+        v
+Text Extraction (TXT / PDF / DOCX)
+        |
+        v
+Chunking
+        |
+        v
+Embeddings (nomic-embed-text)
+        |
+        v
+FAISS Vector Store (persistent)
+        |
+        v
 User Query
-      |
-      v
-Similarity Search
-      |
-      v
-Context Injection
-      |
-      v
-LLM Response
-````
+        |
+        v
+Similarity Search (top-k)
+        |
+        v
+Reranking (CrossEncoder)
+        |
+        v
+Context + Chat History
+        |
+        v
+LLM Response (phi / mistral / mistral-nemo)
+```
 
 ## Tech Stack
-
-* Python
-* Streamlit
-* LangChain
-* FAISS
-* Ollama
-
-## Project Structure
-
-```
-rag-document-chatbot/
-├── app.py
-├── requirements.txt
-├── README.md
-```
+- Python
+- Streamlit
+- LangChain
+- FAISS (vector database)
+- Ollama (local LLMs)
+- Sentence Transformers (reranking)
 
 ## Installation
-
-```bash
-git clone https://github.com/your-username/rag-document-chatbot.git
-cd rag-document-chatbot
+```Bash
+git clone https://github.com/your-username/local-knowledge-assistant.git
+cd local-knowledge-assistant
 
 conda create -n rag-env python=3.10 -y
 conda activate rag-env
@@ -75,45 +100,45 @@ conda activate rag-env
 pip install -r requirements.txt
 ```
 
-## Running the Application
-
-Ensure Ollama is installed and running:
-
-```bash
-ollama run phi
-```
-
-Start the app:
-
-```bash
+## Setup Models
+```Bash
+ollama pull phi
+ollama pull mistral
+ollama pull mistral-nemo
+ollama pull nomic-embed-text
+Run the Application
 streamlit run app.py
 ```
+## Notes
 
-## Current Limitations
+- The vector store is tied to the embedding model (nomic-embed-text)
+- Switching LLMs does not require rebuilding the knowledge base
+- Rebuild only if embedding model changes
 
-* Session-based storage (no persistence)
-* Text files only
-* No chat memory
-* No source attribution
+## Limitations
+- No OCR support for scanned PDFs
+- No metadata filtering or advanced search
+- No evaluation metrics or feedback loop (planned)
 
-## Roadmap
-
-* Persistent vector database
-* PDF and multi-file support
-* Chat history and memory
-* Source citations
-* UI improvements
+## Future Improvements
+- Feedback-based learning system
+- Answer evaluation metrics
+- Improved chunking and document parsing
+- UI enhancements
+- Deployment support
 
 ## Learning Outcomes
 
-* RAG pipeline design
-* Vector embeddings and similarity search
-* Local LLM integration
-* End-to-end AI application development
+This project demonstrates:
+
+- Retrieval-Augmented Generation (RAG)
+- Vector embeddings and semantic search
+- Local LLM integration
+- Multi-document processing
+- Reranking for improved retrieval quality
+- State management and chat memory
+- Debugging and system iteration
 
 ## License
 
 MIT License
-
-
-
