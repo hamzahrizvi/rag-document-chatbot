@@ -24,10 +24,12 @@ YOUTUBE DEMO: https://youtu.be/QOyak7Gxftw
 ### Multi-Document Support
 - Upload multiple files in one session
 - Supports `.txt`, `.pdf`, and `.docx`
+<img width="1280" height="720" alt="1" src="https://github.com/user-attachments/assets/ac1421a5-2a49-4f81-81c6-a5fa8d58aa01" />
 
 ### Persistent Knowledge Base
 - Documents are embedded and stored locally (FAISS)
 - No need to re-upload after restarting the app
+<img width="1280" height="720" alt="2" src="https://github.com/user-attachments/assets/4151fe7e-e558-4110-a612-550496669572" />
 
 ### Model Selection
 - Switch between models at runtime:
@@ -43,6 +45,7 @@ YOUTUBE DEMO: https://youtu.be/QOyak7Gxftw
 ### Chat Memory
 - Maintains recent conversation context
 - Enables follow-up questions
+<img width="1280" height="720" alt="3" src="https://github.com/user-attachments/assets/707aa989-2389-4af3-ae5a-e7c883634355" />
 
 ### Source Attribution
 - Displays source documents for each answer
